@@ -1,0 +1,1186 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Foodagator",
+    "version": "1.0.0",
+    "description": "Foodagator documentation"
+  },
+  "paths": {
+    "/file": {
+      "get": {
+        "tags": [
+          "File"
+        ],
+        "description": "Get file",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ": {
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateFile": {
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "description": "Updating file",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ": {
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createProduct": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Creates a new product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Creating product",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["cousine",
+                "name",
+                "price",
+                "imageUrl",
+                "isFavorite"],
+              "properties": {
+                "cousine": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "imageUrl": {
+                  "type": "string"
+                },
+                "isFavorite": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "Cart has been created!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                    "error": "REQUIRED"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getProduct": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "description": "Returns product object by product id",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["cousine",
+                "name",
+                "price",
+                "imageUrl",
+                "isFavorite"],
+              "properties": {
+                "cousine": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "imageUrl": {
+                  "type": "string"
+                },
+                "isFavorite": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example":{
+                  "cousine":"Pizza",
+                  "name":"meat-super",
+                  "price":12.33,
+                  "imageUrl":"https://www.youtube.com/",
+                  "isFavorite":true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateProduct{id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Without from by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "update product",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["cousine",
+                "name",
+                "price",
+                "imageUrl",
+                "isFavorite"],
+              "properties": {
+                "cousine": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "imageUrl": {
+                  "type": "string"
+                },
+                "isFavorite": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "Product id={id} has been updated!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteProduct{id}": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "delete Product",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "required": ["cousine",
+                "name",
+                "price",
+                "imageUrl",
+                "isFavorite"]
+            }
+          }
+        ],
+        "description": "Delete product from by id",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                "message": "Product id={id}, has been deleted!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Creates a new user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Creating user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "User has been created!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "errors": "This email address is already in use"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Login in foodagator",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Login user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return token",
+            "content": {
+              "application/json": {
+                "example":{
+                  "object":{
+                    "token":"eyJhbGciOiJ...v_P91alZxXNicn0k6_uw4aOwDk-<this your token>",
+                    "message":"Successful"
+                  } 
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "errors": "Error password or email"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createCart": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Creates a new cars",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Creating carts",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "userId",
+                "status",
+                "price",
+                "amount",
+                "totalPrice"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "totalPrice": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "Cart has been created!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "REQUIRED"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                    "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getCartBy{id}": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "description": "Returns cart object by product id",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "totalPrice": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example":{
+                  "userId":1,
+                  "status":"paid",
+                  "price":1.20,
+                  "amount":2.40,
+                  "totalPrice":3.60
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                    "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateCart{id}": {
+      "put": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Without from by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "update cart by id",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "userId",
+                "status",
+                "price",
+                "amount",
+                "totalPrice"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "totalPrice": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Cart id={id} has been updated!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                    "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteCart{id}": {
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cartId",
+            "description": "delete cart by id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "required": [
+                "id"
+              ]
+            }
+          }
+        ],
+        "description": "Delete cart by id",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Cart id={id} has been updated!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                    "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buyProduct{id}": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "buy",
+            "description": "buy product by id and add product in cart",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "required": [
+                  "productId",
+                  "cartId"
+              ]
+            }
+          }
+        ],
+        "description": "Buy product",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Product added to your cart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Bad request"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/removeProductInCart{id}": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "remove cart",
+            "description": "remove product in your cart",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "required": [
+                "productId",
+                "cartId"
+              ]
+            }
+          }
+        ],
+        "description": "Buy product",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Product added to your cart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message":"Bad request"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uploadPhoto": {
+      "post": {
+        "tags": [
+          "Firebase"
+        ],
+        "description": "Uploads a new image",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Uploads image",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "format": "buffer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "image/jpeg": {
+                "example":{
+                  "message": "Image has been upload!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "image/jpeg": {
+                "example":{
+                  "error": "Please add file"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large",
+            "content": {
+              "image/jpeg": {
+                "example":{
+                  "error": "File is too large"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createPost": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "description": "Creates a new forum",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Creating forum",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "title",
+                "text",
+                "theme"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "theme": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "Forum has been created!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "REQUIRED"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getMyPosts": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "description": "Returns all forum",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "title",
+                "text",
+                "theme"
+                ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "theme": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example":{
+                  "title":"Тут могла быть ваша реклама",
+                  "text":"Продам гараж",
+                  "theme":"очень важная тема"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"Error:Product does not exist"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createComment{id}": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "description": "Creates a new comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "body",
+            "description": "Creating comment",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "postId",
+                "character",
+                "comment"
+              ],
+              "properties": {
+                "postId": {
+                  "type": "number"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "character":{
+                  "type":"string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example":{
+                  "message": "Comment has been add!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "Id required"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAllComment{postId}": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "description": "Returns all comments",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example":{
+                    "id": 12,
+                    "postId": "1",
+                    "userId": 3,
+                    "comment": "куплю гараж< 2v.232",
+                    "type": "default/system",
+                    "likeCount": 1,
+                    "createdAt": "2022-08-22T18:02:14.027Z",
+                    "updatedAt": "2022-08-22T18:10:18.638Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"[] or null"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getSystemComment{postId}": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "description": "Returns system comments",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example":{
+                  "id": 12,
+                  "postId": "1",
+                  "userId": 3,
+                  "comment": "тут что-то не так< 2v.232",
+                  "type": "system",
+                  "likeCount": 1,
+                  "createdAt": "2022-08-22T18:02:14.027Z",
+                  "updatedAt": "2022-08-22T18:10:18.638Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error":"[] or null"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbiden",
+            "content": {
+              "application/json": {
+                "example":{
+                  "error": "To proceed, log in or register on foodagator"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
